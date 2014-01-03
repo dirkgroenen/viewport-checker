@@ -19,15 +19,12 @@ copies or substantial portions of the Software.
         // Define user options
         var options = {
             classToAdd: 'visible',
-            offset: 1.2,
-            callback
+            offset: 100
         }
         $.extend(options, useroptions);
 
         // Cache given element into $elem
-        var $elem = $('this');
-
-
+        var $elem = this;
         this.checkElements = function(){
             // Define some variables
             var scrollElem = ((navigator.userAgent.toLowerCase().indexOf('webkit') != -1) ? 'body' : 'html'),
@@ -40,8 +37,8 @@ copies or substantial portions of the Software.
                     return;
 
                 // define the top position of the element and include the offset which makes is appear earlier or later
-                var elemTop = Math.round( $(this).offset().top ) * options.offset;
-                var elemBottom = elemTop + ($(this).height());
+                var elemTop = Math.round( $(this).offset().top ) + options.offset,
+                    elemBottom = elemTop + ($(this).height());
 
                 // Add class if in viewport
                 if ((elemTop < viewportBottom) && (elemBottom > viewportTop))
@@ -50,6 +47,6 @@ copies or substantial portions of the Software.
         }
 
         $(window).scroll(this.checkElements);
-        this.checkElements();
+        this.checkElements()
     }
 })(jQuery);

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="viewportchecker.js"></script>
+
+        <style>
+            body,html{
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                font-family: 'Helvetica';
+                padding: 0;
+            }
+
+            .dummy{
+                width: 100%;
+                height: 40%;
+                font-size: 0px;
+                -webkit-transition: all .3s;
+                transition: all .3s;
+                -moz-transition: all .3s;
+                text-align: center;
+            }
+
+            .dummy.visible{
+                font-size: 50px;
+                color: white;
+                text-shadow: 0 0 3px black;
+            }
+        </style>
+
+        <script>
+            $(document).ready(function(){
+                // Create dummy data
+                for(var i = 0; i < 20; i++){
+                    $('body').append("<div class='dummy' style='background-color: rgb("+ Math.floor(Math.random()*10)+1 +","+ Math.floor(Math.random()*10)+1 +","+ Math.floor(Math.random()*00)+1 +")'>visible</div>");
+                }
+
+                $('.dummy').viewportChecker({
+                    offset: 200
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+    </body>
+</html>
