@@ -1,4 +1,5 @@
 /*
+Version 1.0
 The MIT License (MIT)
 
 Copyright (c) 2014 Dirk Groenen
@@ -16,7 +17,7 @@ copies or substantial portions of the Software.
 
 (function($){
     $.fn.viewportChecker = function(useroptions){
-        // Define user options
+        // Define options and extend with user
         var options = {
             classToAdd: 'visible',
             offset: 100
@@ -24,13 +25,12 @@ copies or substantial portions of the Software.
         $.extend(options, useroptions);
 
         // Cache given element into $elem
-        var $elem = this;
-        this.checkElements = function(){
-            // Define some variables
-            var scrollElem = ((navigator.userAgent.toLowerCase().indexOf('webkit') != -1) ? 'body' : 'html'),
-                viewportTop = $(scrollElem).scrollTop(),
-                viewportBottom = ( viewportTop + $(window).height() );
+        var $elem = this,
+            scrollElem = ((navigator.userAgent.toLowerCase().indexOf('webkit') != -1) ? 'body' : 'html'),
+            viewportTop = $(scrollElem).scrollTop(),
+            viewportBottom = ( viewportTop + $(window).height() );
 
+        this.checkElements = function(){
             $elem.each(function(){
                 // If class already exists; quit
                 if ($(this).hasClass(options.classToAdd))
