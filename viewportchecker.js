@@ -24,13 +24,14 @@ copies or substantial portions of the Software.
         }
         $.extend(options, useroptions);
 
-        // Cache given element into $elem
-        var $elem = this,
-            scrollElem = ((navigator.userAgent.toLowerCase().indexOf('webkit') != -1) ? 'body' : 'html'),
-            viewportTop = $(scrollElem).scrollTop(),
-            viewportBottom = ( viewportTop + $(window).height() );
 
         this.checkElements = function(){
+            // Cache given element into $elem and set some variables
+            var $elem = this,
+                scrollElem = ((navigator.userAgent.toLowerCase().indexOf('webkit') != -1) ? 'body' : 'html'),
+                viewportTop = $(scrollElem).scrollTop(),
+                viewportBottom = ( viewportTop + $(window).height() );
+
             $elem.each(function(){
                 // If class already exists; quit
                 if ($(this).hasClass(options.classToAdd))
