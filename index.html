@@ -40,7 +40,12 @@
                 }
 
                 $('.dummy').viewportChecker({
-                    offset: 200
+                    offset: 200,
+                    callbackFunction: function(elem){
+                        setTimeout(function(){
+                            elem.html('Changed by callback');
+                        },500);
+                    }
                 });
             });
         </script>
