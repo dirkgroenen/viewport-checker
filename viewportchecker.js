@@ -21,7 +21,7 @@
         var options = {
             classToAdd: 'visible',
             offset: 100,
-            callbackFunction: null
+            callbackFunction: function(elem){}
         };
         $.extend(options, useroptions);
 
