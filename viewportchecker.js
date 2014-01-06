@@ -1,5 +1,5 @@
 /*
-    Version 1.3
+    Version 1.3.1
     The MIT License (MIT)
 
     Copyright (c) 2014 Dirk Groenen
@@ -21,13 +21,13 @@
         var options = {
             classToAdd: 'visible',
             offset: 100,
-            callbackFunction: function(){}
-        }
+            callbackFunction: null
+        };
         $.extend(options, useroptions);
 
         // Cache the given element and height of the browser
-        var $elem = this;
-        var windowHeight = $(window).height();
+        var $elem = this,
+            windowHeight = $(window).height();
 
         this.checkElements = function(){
             // Set some vars to check with
@@ -38,8 +38,9 @@
             $elem.each(function(){
                 var $obj = $(this);
                 // If class already exists; quit
-                if ($obj.hasClass(options.classToAdd))
+                if ($obj.hasClass(options.classToAdd)){
                     return;
+                }
 
                 // define the top position of the element and include the offset which makes is appear earlier or later
                 var elemTop = Math.round( $obj.offset().top ) + options.offset,
@@ -53,15 +54,15 @@
                     options.callbackFunction($obj);
                 }
             });
-        }
+        };
 
         // Run checkelements on load and scroll
         $(window).scroll(this.checkElements);
-        this.checkElements()
+        this.checkElements();
 
         // On resize change the height var
         $(window).resize(function(e){
-            windowHeight = e.currentTarget.innerHeight
+            windowHeight = e.currentTarget.innerHeight;
         });
-    }
+    };
 })(jQuery);
