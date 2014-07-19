@@ -21,6 +21,7 @@
         var options = {
             classToAdd: 'visible',
             offset: 100,
+            repeat: false,
             callbackFunction: function(elem){}
         };
         $.extend(options, useroptions);
@@ -38,7 +39,7 @@
             $elem.each(function(){
                 var $obj = $(this);
                 // If class already exists; quit
-                if ($obj.hasClass(options.classToAdd)){
+                if ($obj.hasClass(options.classToAdd) && !options.repeat){
                     return;
                 }
 
@@ -52,6 +53,13 @@
 
                     // Do the callback function. Callback wil send the jQuery object as parameter
                     options.callbackFunction($obj);
+                    
+                // Remove class if not in viewport and repeat is true
+                } else if ($obj.hasClass(options.classToAdd) && (options.repeat)){
+                        $obj.removeClass(options.classToAdd);
+                        
+                        // Do the callback function.
+                        options.callbackFunction($obj);
                 }
             });
         };
