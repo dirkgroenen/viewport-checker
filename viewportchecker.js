@@ -64,5 +64,7 @@
         $(window).resize(function(e){
             windowHeight = e.currentTarget.innerHeight;
         });
+        
+        return this;
     };
 })(jQuery);
