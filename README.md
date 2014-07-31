@@ -29,3 +29,7 @@ $('.dummy').viewportChecker({
     callbackFunction: function(elem){} // Callback to do after a class was added to an element
 });
 ```
+
+Use case
+--------
+The guys from web2feel have written a little tutorial with a great example of how you can use this script. You can check the [tutorial here](http://www.web2feel.com/tutorial-for-animated-scroll-loading-effects-with-animate-css-and-jquery/) and the [demo here](http://web2feel.com/freeby/scroll-effects/index.html).
