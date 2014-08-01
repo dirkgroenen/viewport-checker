@@ -4,7 +4,7 @@
     <head>
 
         <script src="http://code.jquery.com/jquery.js"></script>
-        <script src="viewportchecker.js"></script>
+        <script src="jquery.viewportchecker.js"></script>
 
         <style>
             body,html{
@@ -41,9 +41,10 @@
 
                 $('.dummy').viewportChecker({
                     offset: 200,
-                    callbackFunction: function(elem){
+                    repeat: true,
+                    callbackFunction: function(elem, action){
                         setTimeout(function(){
-                            elem.html('Changed by callback');
+                            elem.html((action == "add") ? 'Changed by callback, add' : 'Changed by callback, remove');
                         },500);
                     }
                 });

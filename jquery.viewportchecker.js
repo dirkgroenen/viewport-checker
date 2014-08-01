@@ -1,5 +1,5 @@
 /*
-    Version 1.3.3
+    Version 1.4.0
     The MIT License (MIT)
 
     Copyright (c) 2014 Dirk Groenen
@@ -52,14 +52,14 @@
                     $obj.addClass(options.classToAdd);
 
                     // Do the callback function. Callback wil send the jQuery object as parameter
-                    options.callbackFunction($obj);
+                    options.callbackFunction($obj, "add");
                     
                 // Remove class if not in viewport and repeat is true
                 } else if ($obj.hasClass(options.classToAdd) && (options.repeat)){
                         $obj.removeClass(options.classToAdd);
                         
                         // Do the callback function.
-                        options.callbackFunction($obj);
+                        options.callbackFunction($obj, "remove");
                 }
             });
         };
