@@ -26,6 +26,7 @@ The current available options are:
 $('.dummy').viewportChecker({
     classToAdd: 'visible', // Class to add to the elements when they are visible
     offset: 100, // The offset of the elements (let them appear earlier or later)
+    repeat: false, // Add the possibility to remove the class if the elements are not visible
     callbackFunction: function(elem){} // Callback to do after a class was added to an element
 });
 ```
