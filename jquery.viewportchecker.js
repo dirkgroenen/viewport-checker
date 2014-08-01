@@ -1,5 +1,5 @@
 /*
-    Version 1.4.0
+    Version 1.4.1
     The MIT License (MIT)
 
     Copyright (c) 2014 Dirk Groenen
@@ -22,18 +22,19 @@
             classToAdd: 'visible',
             offset: 100,
             repeat: false,
-            callbackFunction: function(elem){}
+            callbackFunction: function(elem, action){}
         };
         $.extend(options, useroptions);
 
         // Cache the given element and height of the browser
         var $elem = this,
-            windowHeight = $(window).height();
+            windowHeight = $(window).height(),
+            scrollElem = ((navigator.userAgent.toLowerCase().indexOf('webkit') != -1) ? 'body' : 'html');
 
         this.checkElements = function(){
+        
             // Set some vars to check with
-            var scrollElem = ((navigator.userAgent.toLowerCase().indexOf('webkit') != -1) ? 'body' : 'html'),
-                viewportTop = $(scrollElem).scrollTop(),
+            var viewportTop = $(scrollElem).scrollTop(),
                 viewportBottom = (viewportTop + windowHeight);
 
             $elem.each(function(){
@@ -56,17 +57,17 @@
                     
                 // Remove class if not in viewport and repeat is true
                 } else if ($obj.hasClass(options.classToAdd) && (options.repeat)){
-                        $obj.removeClass(options.classToAdd);
-                        
-                        // Do the callback function.
-                        options.callbackFunction($obj, "remove");
+                    $obj.removeClass(options.classToAdd);
+
+                    // Do the callback function.
+                    options.callbackFunction($obj, "remove");
                 }
             });
+        
         };
 
         // Run checkelements on load and scroll
-        $(window).scroll(this.checkElements);
-        this.checkElements();
+        $(window).bind("load scroll", this.checkElements);
 
         // On resize change the height var
         $(window).resize(function(e){
