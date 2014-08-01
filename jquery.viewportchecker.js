@@ -1,5 +1,5 @@
 /*
-    Version 1.4.1
+    Version 1.4.2
     The MIT License (MIT)
 
     Copyright (c) 2014 Dirk Groenen
