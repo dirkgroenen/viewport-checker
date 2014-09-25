@@ -74,6 +74,9 @@
             windowHeight = e.currentTarget.innerHeight;
         });
         
+        // trigger inital check if elements already visible
+        this.checkElements();
+        
         return this;
     };
 })(jQuery);
