@@ -27,7 +27,8 @@ $('.dummy').viewportChecker({
     classToAdd: 'visible', // Class to add to the elements when they are visible
     offset: 100, // The offset of the elements (let them appear earlier or later)
     repeat: false, // Add the possibility to remove the class if the elements are not visible
-    callbackFunction: function(elem, action){} // Callback to do after a class was added to an element. Action will return "add" or "remove", depending if the class was added or removed
+    callbackFunction: function(elem, action){}, // Callback to do after a class was added to an element. Action will return "add" or "remove", depending if the class was added or removed
+	scrollHorizontal: false // Set to true if your website scrolls horizontal instead of vertical.
 });
 ```
 
