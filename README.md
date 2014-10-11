@@ -21,7 +21,7 @@ Just include the script and jQuery in your website <head> tag and call it on the
 
 Options
 -------
-The current available options are:
+The currently available global options are:
 ```code
 $('.dummy').viewportChecker({
     classToAdd: 'visible', // Class to add to the elements when they are visible
@@ -30,6 +30,16 @@ $('.dummy').viewportChecker({
     callbackFunction: function(elem, action){}, // Callback to do after a class was added to an element. Action will return "add" or "remove", depending if the class was added or removed
 	scrollHorizontal: false // Set to true if your website scrolls horizontal instead of vertical.
 });
+```
+
+Besides the global options you can also add data-attributes to each individual element. These attributes will override the global options. 
+
+Available attributes are:
+```code
+<div data-add="random"></div>               >	clasToAdd
+<div data-offset="100"></div>               >	offset
+<div data-repeat="true"></div>              >	repeat
+<div data-scrollHorizontal="false"></div>   >	scrollHorizontal
 ```
 
 Use case
