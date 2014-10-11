@@ -46,29 +46,45 @@
             
 
             $elem.each(function(){
-                var $obj = $(this);
+                var $obj = $(this),
+                    objOptions = {},
+                    attrOptions = {};
+
+                //  Get any individual attribution data
+                if ($obj.data('add'))
+                    attrOptions.classToAdd = $obj.data('add');
+                if ($obj.data('offset'))
+                    attrOptions.offset = $obj.data('offset');
+                if ($obj.data('repeat'))
+                    attrOptions.repeat = $obj.data('repeat');
+                if ($obj.data('scrollHorizontal'))
+                    attrOptions.scrollHorizontal = $obj.data('scrollHorizontal');
+
+                $.extend(objOptions, options);
+                $.extend(objOptions, attrOptions);
+
                 // If class already exists; quit
-                if ($obj.hasClass(options.classToAdd) && !options.repeat){
+                if ($obj.hasClass(objOptions.classToAdd) && !objOptions.repeat){
                     return;
                 }
 
                 // define the top position of the element and include the offset which makes is appear earlier or later
-                var elemTop = (!options.scrollHorizontal) ? Math.round( $obj.offset().top ) + options.offset : Math.round( $obj.offset().left ) + options.offset,
+                var elemTop = (!objOptions.scrollHorizontal) ? Math.round( $obj.offset().top ) + objOptions.offset : Math.round( $obj.offset().left ) + objOptions.offset,
                     elemBottom = elemTop + ($obj.height());
 
                 // Add class if in viewport
                 if ((elemTop < viewportBottom) && (elemBottom > viewportTop)){
-                    $obj.addClass(options.classToAdd);
+                    $obj.addClass(objOptions.classToAdd);
 
                     // Do the callback function. Callback wil send the jQuery object as parameter
-                    options.callbackFunction($obj, "add");
+                    objOptions.callbackFunction($obj, "add");
                     
                 // Remove class if not in viewport and repeat is true
-                } else if ($obj.hasClass(options.classToAdd) && (options.repeat)){
-                    $obj.removeClass(options.classToAdd);
+                } else if ($obj.hasClass(objOptions.classToAdd) && (objOptions.repeat)){
+                    $obj.removeClass(objOptions.classToAdd);
 
                     // Do the callback function.
-                    options.callbackFunction($obj, "remove");
+                    objOptions.callbackFunction($obj, "remove");
                 }
             });
         
