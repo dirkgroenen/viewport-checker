@@ -1,0 +1,57 @@
+<!-- Demo page -->
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="jquery.viewportchecker.js"></script>
+
+        <style>
+            body,html{
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                font-family: 'Helvetica';
+                padding: 0;
+            }
+
+            .dummy{
+                width: 100%;
+                height: 40%;
+                font-size: 0px;
+                -webkit-transition: all .3s;
+                transition: all .3s;
+                -moz-transition: all .3s;
+                text-align: center;
+            }
+
+            .dummy.visible{
+                font-size: 50px;
+                color: white;
+                text-shadow: 0 0 3px black;
+            }
+        </style>
+
+        <script>
+            $(document).ready(function(){
+                $('.dummy').viewportChecker({
+                    callbackFunction: function(elem, action){
+                        setTimeout(function(){
+                            elem.html((action == "add") ? 'added class' : 'removed class');
+                        },500);
+                    }
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="dummy" data-add="visible random1" data-repeat="true" data-offset="100" style="background-color: #2ecc71;"></div>
+        <div class="dummy" data-add="visible random2" data-repeat="true" data-offset="100" style="background-color: #9b59b6;"></div>
+        <div class="dummy" data-add="visible random3" data-repeat="true" data-offset="100" style="background-color: #3498db;"></div>
+        <div class="dummy" data-add="visible random4" data-repeat="true" data-offset="100" style="background-color: #e74c3c;"></div>
+        <div class="dummy" data-add="visible random5" data-repeat="true" data-offset="100" style="background-color: #e67e22;"></div>
+        <div class="dummy" data-add="visible random6" data-repeat="true" data-offset="100" style="background-color: #f1c40f;"></div>
+        <div class="dummy" data-add="visible random7" data-repeat="true" data-offset="100" style="background-color: #34495e;"></div>
+    </body>
+</html>
