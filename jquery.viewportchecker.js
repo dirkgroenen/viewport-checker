@@ -20,10 +20,11 @@
         // Define options and extend with user
         var options = {
             classToAdd: 'visible',
+            classToRemove : 'invisible',
             offset: 100,
             repeat: false,
             callbackFunction: function(elem, action){},
-			scrollHorizontal: false
+            scrollHorizontal: false
         };
         $.extend(options, useroptions);
 
@@ -33,17 +34,17 @@
             scrollElem = ((navigator.userAgent.toLowerCase().indexOf('webkit') != -1) ? 'body' : 'html');
 
         this.checkElements = function(){
-        
+
             // Set some vars to check with
-			if(!options.scrollHorizontal){
-				var viewportTop = $(scrollElem).scrollTop(),
-					viewportBottom = (viewportTop + windowSize);
-			}
-			else{
-				var viewportTop = $(scrollElem).scrollLeft(),
-					viewportBottom = (viewportTop + windowSize);
-			}
-            
+            if(!options.scrollHorizontal){
+                var viewportTop = $(scrollElem).scrollTop(),
+                    viewportBottom = (viewportTop + windowSize);
+            }
+            else{
+                var viewportTop = $(scrollElem).scrollLeft(),
+                    viewportBottom = (viewportTop + windowSize);
+            }
+
 
             $elem.each(function(){
                 var $obj = $(this),
@@ -53,6 +54,8 @@
                 //  Get any individual attribution data
                 if ($obj.data('add'))
                     attrOptions.classToAdd = $obj.data('add');
+                if ($obj.data('add'))
+                    attrOptions.classToRemove = $obj.data('remove-class');
                 if ($obj.data('offset'))
                     attrOptions.offset = $obj.data('offset');
                 if ($obj.data('repeat'))
@@ -74,11 +77,15 @@
 
                 // Add class if in viewport
                 if ((elemTop < viewportBottom) && (elemBottom > viewportTop)){
+
+                    // remove class
+                    $obj.removeClass(objOptions.classToRemove);
+
                     $obj.addClass(objOptions.classToAdd);
 
                     // Do the callback function. Callback wil send the jQuery object as parameter
                     objOptions.callbackFunction($obj, "add");
-                    
+
                 // Remove class if not in viewport and repeat is true
                 } else if ($obj.hasClass(objOptions.classToAdd) && (objOptions.repeat)){
                     $obj.removeClass(objOptions.classToAdd);
@@ -87,7 +94,7 @@
                     objOptions.callbackFunction($obj, "remove");
                 }
             });
-        
+
         };
 
         // Run checkelements on load and scroll
@@ -97,10 +104,10 @@
         $(window).resize(function(e){
             windowSize = (!options.scrollHorizontal) ? e.currentTarget.innerHeight : e.currentTarget.innerWidth;
         });
-        
+
         // trigger inital check if elements already visible
         this.checkElements();
-        
+
         return this;
     };
 })(jQuery);
