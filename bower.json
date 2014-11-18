@@ -1,7 +1,7 @@
 {
-  "name": "jquery-viewport-checker",
-  "version": "1.7.0",
-  "homepage": "https://github.com/surajair/jquery-viewport-checker",
+  "name": "jq-viewport-checker",
+  "version": "1.7.1",
+  "homepage": "https://github.com/surajair/jq-viewport-checker",
   "authors": [
     "Suraj Air <surajair@live.com>"
   ],

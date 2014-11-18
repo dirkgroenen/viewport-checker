@@ -36,10 +36,11 @@ Besides the global options you can also add data-attributes to each individual e
 
 Available attributes are:
 ```code
-<div data-add="random"></div>               >	clasToAdd
-<div data-offset="100"></div>               >	offset
-<div data-repeat="true"></div>              >	repeat
-<div data-scrollHorizontal="false"></div>   >	scrollHorizontal
+<div data-vp-add-class="random"></div>          >   clasToAdd
+<div data-vp-remove-class="random"></div>       >	clasToRemove
+<div data-vp-offset="100"></div>                >	offset
+<div data-vp-repeat="true"></div>               >	repeat
+<div data-vp-scrollHorizontal="false"></div>    >	scrollHorizontal
 ```
 
 Use case

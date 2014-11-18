@@ -14,7 +14,7 @@
     The above copyright notice and this permission notice shall be included in all
     copies or substantial portions of the Software.
 
-    
+
 */
 
 (function($){
@@ -55,15 +55,15 @@
 
                 //  Get any individual attribution data
                 if ($obj.data('add'))
-                    attrOptions.classToAdd = $obj.data('add');
+                    attrOptions.classToAdd = $obj.data('vp-add-class');
                 if ($obj.data('add'))
-                    attrOptions.classToRemove = $obj.data('remove-class');
+                    attrOptions.classToRemove = $obj.data('vp-remove-class');
                 if ($obj.data('offset'))
-                    attrOptions.offset = $obj.data('offset');
+                    attrOptions.offset = $obj.data('vp-offset');
                 if ($obj.data('repeat'))
-                    attrOptions.repeat = $obj.data('repeat');
+                    attrOptions.repeat = $obj.data('vp-repeat');
                 if ($obj.data('scrollHorizontal'))
-                    attrOptions.scrollHorizontal = $obj.data('scrollHorizontal');
+                    attrOptions.scrollHorizontal = $obj.data('vp-scrollHorizontal');
 
                 $.extend(objOptions, options);
                 $.extend(objOptions, attrOptions);
