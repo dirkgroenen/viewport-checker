@@ -1,5 +1,5 @@
 /*
-    Version 1.5.0
+    Version 1.7.0
     The MIT License (MIT)
 
     Copyright (c) 2014 Dirk Groenen
@@ -13,6 +13,8 @@
 
     The above copyright notice and this permission notice shall be included in all
     copies or substantial portions of the Software.
+
+    
 */
 
 (function($){
