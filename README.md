@@ -25,6 +25,7 @@ The currently available global options are:
 ```code
 $('.dummy').viewportChecker({
     classToAdd: 'visible', // Class to add to the elements when they are visible
+    classToRemove: 'invisible', // Class to remove before adding 'classToAdd' to the elements
     offset: 100, // The offset of the elements (let them appear earlier or later)
     repeat: false, // Add the possibility to remove the class if the elements are not visible
     callbackFunction: function(elem, action){}, // Callback to do after a class was added to an element. Action will return "add" or "remove", depending if the class was added or removed
