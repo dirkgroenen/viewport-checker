@@ -25,6 +25,7 @@ The currently available global options are:
 ```code
 $('.dummy').viewportChecker({
     classToAdd: 'visible', // Class to add to the elements when they are visible
+    classToRemove: 'invisible', // Class to remove before adding 'classToAdd' to the elements
     offset: 100, // The offset of the elements (let them appear earlier or later)
     repeat: false, // Add the possibility to remove the class if the elements are not visible
     callbackFunction: function(elem, action){}, // Callback to do after a class was added to an element. Action will return "add" or "remove", depending if the class was added or removed
@@ -36,10 +37,11 @@ Besides the global options you can also add data-attributes to each individual e
 
 Available attributes are:
 ```code
-<div data-add="random"></div>               >	clasToAdd
-<div data-offset="100"></div>               >	offset
-<div data-repeat="true"></div>              >	repeat
-<div data-scrollHorizontal="false"></div>   >	scrollHorizontal
+<div data-vp-add-class="random"></div>          >   clasToAdd
+<div data-vp-remove-class="random"></div>       >	clasToRemove
+<div data-vp-offset="100"></div>                >	offset
+<div data-vp-repeat="true"></div>               >	repeat
+<div data-vp-scrollHorizontal="false"></div>    >	scrollHorizontal
 ```
 
 Use case

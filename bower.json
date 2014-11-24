@@ -1,0 +1,24 @@
+{
+  "name": "jq-viewport-checker",
+  "version": "1.7.1",
+  "homepage": "https://github.com/surajair/jq-viewport-checker",
+  "authors": [
+    "Suraj Air <surajair@live.com>"
+  ],
+  "description": "jQuery based viewport checker",
+  "main": "jquery.viewportchecker.js",
+  "keywords": [
+    "jQuery",
+    "Viewport",
+    "checker",
+    "Viewport"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
