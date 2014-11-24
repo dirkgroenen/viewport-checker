@@ -4,7 +4,7 @@
     <head>
 
         <script src="http://code.jquery.com/jquery.js"></script>
-        <script src="jquery.viewportchecker.js"></script>
+        <script src="../src/jquery.viewportchecker.js"></script>
 
         <style>
             body,html{
@@ -37,7 +37,7 @@
                 $('.dummy').viewportChecker({
                     callbackFunction: function(elem, action){
                         setTimeout(function(){
-                            elem.html((action == "add") ? 'added class' : 'removed class');
+                            elem.html((action == "add") ? 'Callback with 500ms timeout: added class' : 'Callback with 500ms timeout: removed class');
                         },500);
                     }
                 });
@@ -46,12 +46,12 @@
     </head>
 
     <body>
-        <div class="dummy" data-add="visible random1" data-repeat="true" data-offset="100" style="background-color: #2ecc71;"></div>
-        <div class="dummy" data-add="visible random2" data-repeat="true" data-offset="100" style="background-color: #9b59b6;"></div>
-        <div class="dummy" data-add="visible random3" data-repeat="true" data-offset="100" style="background-color: #3498db;"></div>
-        <div class="dummy" data-add="visible random4" data-repeat="true" data-offset="100" style="background-color: #e74c3c;"></div>
-        <div class="dummy" data-add="visible random5" data-repeat="true" data-offset="100" style="background-color: #e67e22;"></div>
-        <div class="dummy" data-add="visible random6" data-repeat="true" data-offset="100" style="background-color: #f1c40f;"></div>
-        <div class="dummy" data-add="visible random7" data-repeat="true" data-offset="100" style="background-color: #34495e;"></div>
+        <div class="dummy" data-vp-add-class="visible random1" data-repeat="true" data-vp-offset="100" style="background-color: #2ecc71;">element 1</div>
+        <div class="dummy" data-vp-add-class="visible random2" data-repeat="true" data-vp-offset="100" style="background-color: #9b59b6;">element 2</div>
+        <div class="dummy" data-vp-add-class="visible random3" data-repeat="true" data-vp-offset="100" style="background-color: #3498db;">element 3</div>
+        <div class="dummy" data-vp-add-class="visible random4" data-repeat="true" data-vp-offset="100" style="background-color: #e74c3c;">element 4</div>
+        <div class="dummy" data-vp-add-class="visible random5" data-repeat="true" data-vp-offset="100" style="background-color: #e67e22;">element 5</div>
+        <div class="dummy" data-vp-add-class="visible random6" data-repeat="true" data-vp-offset="100" style="background-color: #f1c40f;">element 6</div>
+        <div class="dummy" data-vp-add-class="visible random7" data-repeat="true" data-vp-offset="100" style="background-color: #34495e;">element 7</div>
     </body>
 </html>

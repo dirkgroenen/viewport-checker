@@ -38,22 +38,25 @@
 
         // Cache the given element and height of the browser
         var $elem = this,
-            windowSize = (!options.scrollHorizontal) ? $(window).height() : $(window).width(),
+            windowSize = {height: $(window).height(), width: $(window).width()},
             scrollElem = ((navigator.userAgent.toLowerCase().indexOf('webkit') != -1) ? 'body' : 'html');
 
+        /*
+         * Main method that checks the elements and adds or removes the class(es)
+         */
         this.checkElements = function(){
 
             // Set some vars to check with
             if(!options.scrollHorizontal){
-                var viewportTop = $(scrollElem).scrollTop(),
-                    viewportBottom = (viewportTop + windowSize);
+                var viewportStart = $(scrollElem).scrollTop(),
+                    viewportEnd = (viewportStart + windowSize.height);
             }
             else{
-                var viewportTop = $(scrollElem).scrollLeft(),
-                    viewportBottom = (viewportTop + windowSize);
+                var viewportStart = $(scrollElem).scrollLeft(),
+                    viewportEnd = (viewportStart + windowSize.width);
             }
 
-
+            // Loop through all given dom elements
             $elem.each(function(){
                 var $obj = $(this),
                     objOptions = {},
@@ -81,11 +84,11 @@
                 }
 
                 // define the top position of the element and include the offset which makes is appear earlier or later
-                var elemTop = (!objOptions.scrollHorizontal) ? Math.round( $obj.offset().top ) + objOptions.offset : Math.round( $obj.offset().left ) + objOptions.offset,
-                    elemBottom = elemTop + ($obj.height());
+                var elemStart = (!objOptions.scrollHorizontal) ? Math.round( $obj.offset().top ) + objOptions.offset : Math.round( $obj.offset().left ) + objOptions.offset,
+                    elemEnd = (!objOptions.scrollHorizontal) ? elemStart + $obj.height() : elemStart + $obj.width();
 
                 // Add class if in viewport
-                if ((elemTop < viewportBottom) && (elemBottom > viewportTop)){
+                if ((elemStart < viewportEnd) && (elemEnd > viewportStart)){
 
                     // remove class
                     $obj.removeClass(objOptions.classToRemove);
@@ -117,6 +120,7 @@
         // trigger inital check if elements already visible
         this.checkElements();
 
+        // Default jquery plugin behaviour
         return this;
     };
 })(jQuery);
