@@ -1,8 +1,14 @@
 /*
-    Version 1.7.0
+    Version 1.7.1
     The MIT License (MIT)
 
     Copyright (c) 2014 Dirk Groenen
+    
+    Authors:
+        Dirk Groenen <dirk@bitlabs.nl>
+        Jono    
+        Michael Brüggemann
+        Suraj Air <surajair@live.com>
 
     Permission is hereby granted, free of charge, to any person obtaining a copy of
     this software and associated documentation files (the "Software"), to deal in
