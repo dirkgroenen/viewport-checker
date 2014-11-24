@@ -1,5 +1,5 @@
 /*
-    Version 1.7.1
+    Version 1.7.2
     The MIT License (MIT)
 
     Copyright (c) 2014 Dirk Groenen
@@ -60,17 +60,18 @@
                     attrOptions = {};
 
                 //  Get any individual attribution data
-                if ($obj.data('add'))
+                if ($obj.data('vp-add-class'))
                     attrOptions.classToAdd = $obj.data('vp-add-class');
-                if ($obj.data('add'))
+                if ($obj.data('vp-remove-class'))
                     attrOptions.classToRemove = $obj.data('vp-remove-class');
-                if ($obj.data('offset'))
+                if ($obj.data('vp-offset'))
                     attrOptions.offset = $obj.data('vp-offset');
-                if ($obj.data('repeat'))
+                if ($obj.data('vp-repeat'))
                     attrOptions.repeat = $obj.data('vp-repeat');
-                if ($obj.data('scrollHorizontal'))
+                if ($obj.data('vp-scrollHorizontal'))
                     attrOptions.scrollHorizontal = $obj.data('vp-scrollHorizontal');
 
+                // Extend objOptions with data attributes and default options
                 $.extend(objOptions, options);
                 $.extend(objOptions, attrOptions);
 
