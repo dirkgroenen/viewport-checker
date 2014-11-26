@@ -1,5 +1,5 @@
 /*
-    Version 1.7.2
+    Version 1.7.3
     The MIT License (MIT)
 
     Copyright (c) 2014 Dirk Groenen
@@ -114,7 +114,8 @@
 
         // On resize change the height var
         $(window).resize(function(e){
-            windowSize = (!options.scrollHorizontal) ? e.currentTarget.innerHeight : e.currentTarget.innerWidth;
+            windowSize = {height: $(window).height(), width: $(window).width()},
+            $elem.checkElements();
         });
 
         // trigger inital check if elements already visible
