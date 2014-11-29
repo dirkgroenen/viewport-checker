@@ -109,7 +109,7 @@
         };
 
         // Run checkelements on load and scroll
-        $(window).bind("load scroll touchmove", this.checkElements);
+        $(window).bind("load scroll touchmove MSPointerMove", this.checkElements);
 
         // On resize change the height var
         $(window).resize(function(e){
