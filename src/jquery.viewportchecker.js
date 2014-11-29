@@ -1,14 +1,8 @@
 /*
-    Version 1.7.3
+    Version 1.7.4
     The MIT License (MIT)
 
     Copyright (c) 2014 Dirk Groenen
-    
-    Authors:
-        Dirk Groenen <dirk@bitlabs.nl>
-        Jono    
-        Michael Brüggemann
-        Suraj Air <surajair@live.com>
 
     Permission is hereby granted, free of charge, to any person obtaining a copy of
     this software and associated documentation files (the "Software"), to deal in
@@ -19,8 +13,6 @@
 
     The above copyright notice and this permission notice shall be included in all
     copies or substantial portions of the Software.
-
-
 */
 
 (function($){
@@ -31,6 +23,7 @@
             classToRemove : 'invisible',
             offset: 100,
             repeat: false,
+            invertBottomOffset: true,
             callbackFunction: function(elem, action){},
             scrollHorizontal: false
         };
@@ -74,6 +67,8 @@
                     attrOptions.repeat = $obj.data('vp-repeat');
                 if ($obj.data('vp-scrollHorizontal'))
                     attrOptions.scrollHorizontal = $obj.data('vp-scrollHorizontal');
+                if ($obj.data('vp-invertBottomOffset'))
+                    attrOptions.scrollHorizontal = $obj.data('vp-invertBottomOffset');
 
                 // Extend objOptions with data attributes and default options
                 $.extend(objOptions, options);
@@ -86,7 +81,10 @@
 
                 // define the top position of the element and include the offset which makes is appear earlier or later
                 var elemStart = (!objOptions.scrollHorizontal) ? Math.round( $obj.offset().top ) + objOptions.offset : Math.round( $obj.offset().left ) + objOptions.offset,
-                    elemEnd = (!objOptions.scrollHorizontal) ? elemStart + $obj.height() - (objOptions.offset * 2) : elemStart + $obj.width() - (objOptions.offset * 2);
+                    elemEnd = (!objOptions.scrollHorizontal) ? elemStart + $obj.height() : elemStart + $obj.width();
+
+                if(objOptions.invertBottomOffset)
+                	elemEnd -= (objOptions.offset * 2);
 
                 // Add class if in viewport
                 if ((elemStart < viewportEnd) && (elemEnd > viewportStart)){
