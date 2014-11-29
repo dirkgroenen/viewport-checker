@@ -45,15 +45,16 @@
          * Main method that checks the elements and adds or removes the class(es)
          */
         this.checkElements = function(){
+            var viewportStart, viewportEnd;
 
             // Set some vars to check with
             if(!options.scrollHorizontal){
-                var viewportStart = $(scrollElem).scrollTop(),
-                    viewportEnd = (viewportStart + windowSize.height);
+                viewportStart = $(scrollElem).scrollTop();
+                viewportEnd = (viewportStart + windowSize.height);
             }
             else{
-                var viewportStart = $(scrollElem).scrollLeft(),
-                    viewportEnd = (viewportStart + windowSize.width);
+                viewportStart = $(scrollElem).scrollLeft();
+                viewportEnd = (viewportStart + windowSize.width);
             }
 
             // Loop through all given dom elements
@@ -85,7 +86,7 @@
 
                 // define the top position of the element and include the offset which makes is appear earlier or later
                 var elemStart = (!objOptions.scrollHorizontal) ? Math.round( $obj.offset().top ) + objOptions.offset : Math.round( $obj.offset().left ) + objOptions.offset,
-                    elemEnd = (!objOptions.scrollHorizontal) ? elemStart + $obj.height() : elemStart + $obj.width();
+                    elemEnd = (!objOptions.scrollHorizontal) ? elemStart + $obj.height() - (objOptions.offset * 2) : elemStart + $obj.width() - (objOptions.offset * 2);
 
                 // Add class if in viewport
                 if ((elemStart < viewportEnd) && (elemEnd > viewportStart)){
