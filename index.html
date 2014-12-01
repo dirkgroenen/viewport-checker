@@ -19,17 +19,39 @@
                 width: 100%;
                 height: 300px;
                 font-size: 0px;
-                -webkit-transition: all .3s;
-                transition: all .3s;
-                -moz-transition: all .3s;
+                -webkit-transition: all .5s;
+                transition: all .5s;
+                -moz-transition: all .5s;
                 text-align: center;
+                opacity: .3;
             }
 
             .dummy.visible{
                 font-size: 50px;
                 color: white;
                 text-shadow: 0 0 3px black;
+                opacity: 1;
             }
+
+            .spacer{
+                position: relative;
+                width: 100%;
+                height: 100%;
+                background-color: #f2f2f2;
+            }
+
+            .spacer .text{
+                position: absolute;
+                font-size: 50px;
+                color: #232323;
+                text-align: center;
+                width: 100%;
+                top: 50%;
+                -webkit-transform: translateY(-50%);
+                -moz-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+
         </style>
 
         <script>
@@ -46,12 +68,12 @@
     </head>
 
     <body>
-        <div class="dummy" data-vp-add-class="visible random1" data-vp-repeat="true" data-vp-offset="100" style="background-color: #2ecc71;">element 1</div>
-        <div class="dummy" data-repeat="true" data-vp-offset="100" style="background-color: #9b59b6;">element 2</div>
-        <div class="dummy" data-vp-add-class="visible random3" data-vp-offset="100" style="background-color: #3498db;">element 3</div>
-        <div class="dummy" data-vp-add-class="visible random4" data-vp-offset="100" style="background-color: #e74c3c;">element 4</div>
-        <div class="dummy" data-vp-add-class="visible random5" data-vp-repeat="true" data-vp-offset="10" style="background-color: #e67e22;">element 5</div>
-        <div class="dummy" data-vp-add-class="visible random6" data-vp-repeat="true" data-vp-offset="200" style="background-color: #f1c40f;">element 6</div>
-        <div class="dummy" data-vp-add-class="visible random7" data-vp-repeat="true" data-vp-offset="50" style="background-color: #34495e;">element 7</div>
+        <div class="spacer"><div class="text">Scroll down</div></div>
+        <div class="dummy" data-vp-add-class="visible random1" data-vp-repeat="true" data-vp-offset="100" style="background-color: #2ecc71;">element 1 (repeat=true, offset=100)</div>
+        <div class="spacer"></div>
+        <div class="dummy" data-vp-add-class="visible random1" data-vp-repeat="false" data-vp-offset="100" style="background-color: #9b59b6;">element 2 (repeat=false, offset=100)</div>
+        <div class="spacer"></div>
+        <div class="dummy" data-vp-add-class="visible random1" data-vp-repeat="true" data-vp-offset="100" style="background-color: #3498db;">element 3 (repeat=true, offset=100)</div>
+        <div class="spacer"></div>
     </body>
 </html>
