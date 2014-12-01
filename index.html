@@ -59,7 +59,7 @@
                 $('.dummy').viewportChecker({
                     callbackFunction: function(elem, action){
                         setTimeout(function(){
-                            elem.find(".callbac").html((action == "add") ? 'Callback with 500ms timeout: added class' : 'Callback with 500ms timeout: removed class');
+                            elem.find(".callback").html((action == "add") ? 'Callback with 500ms timeout: added class' : 'Callback with 500ms timeout: removed class');
                         },500);
                     }
                 });
