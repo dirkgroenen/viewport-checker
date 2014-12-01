@@ -59,7 +59,7 @@
                 $('.dummy').viewportChecker({
                     callbackFunction: function(elem, action){
                         setTimeout(function(){
-                            elem.html((action == "add") ? 'Callback with 500ms timeout: added class' : 'Callback with 500ms timeout: removed class');
+                            elem.find(".callbac").html((action == "add") ? 'Callback with 500ms timeout: added class' : 'Callback with 500ms timeout: removed class');
                         },500);
                     }
                 });
@@ -69,11 +69,11 @@
 
     <body>
         <div class="spacer"><div class="text">Scroll down</div></div>
-        <div class="dummy" data-vp-add-class="visible random1" data-vp-repeat="true" data-vp-offset="100" style="background-color: #2ecc71;">element 1 (repeat=true, offset=100)</div>
+        <div class="dummy" data-vp-add-class="visible random1" data-vp-repeat="true" data-vp-offset="100" style="background-color: #2ecc71;">element 1 (repeat=true, offset=100)<div class="callback"></div></div>
         <div class="spacer"></div>
-        <div class="dummy" data-vp-add-class="visible random1" data-vp-repeat="false" data-vp-offset="100" style="background-color: #9b59b6;">element 2 (repeat=false, offset=100)</div>
+        <div class="dummy" data-vp-add-class="visible random1" data-vp-repeat="false" data-vp-offset="100" style="background-color: #9b59b6;">element 2 (repeat=false, offset=100)<div class="callback"></div></div>
         <div class="spacer"></div>
-        <div class="dummy" data-vp-add-class="visible random1" data-vp-repeat="true" data-vp-offset="100" style="background-color: #3498db;">element 3 (repeat=true, offset=100)</div>
+        <div class="dummy" data-vp-add-class="visible random1" data-vp-repeat="true" data-vp-offset="100" style="background-color: #3498db;">element 3 (repeat=true, offset=100)<div class="callback"></div></div>
         <div class="spacer"></div>
     </body>
 </html>
