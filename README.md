@@ -3,6 +3,8 @@ jQuery-viewport-checker
 
 Little script that detects if an element is in the viewport and adds a class to it.
 
+[![Help me with a cup of coffee ](https://pledgie.com/campaigns/28130.png?skin_name=chrome)](https://pledgie.com/campaigns/28130)
+
 Installation
 ------------
 Just include the script and jQuery in your website <head> tag and call it on the elements you want to check.
