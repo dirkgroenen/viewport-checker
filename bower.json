@@ -7,7 +7,7 @@
     "Suraj Air <surajair@live.com>"
   ],
   "description": "jQuery based viewport checker",
-  "main": "jquery.viewportchecker.js",
+  "main": "src/jquery.viewportchecker.js",
   "keywords": [
     "jQuery",
     "Viewport",
