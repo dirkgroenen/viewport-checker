@@ -83,8 +83,6 @@
                 if(String(objOptions.offset).indexOf("%") > 0)
                     objOptions.offset = (parseInt(objOptions.offset) / 100) * windowSize.height;
 
-                console.log(objOptions.offset);
-
                 // define the top position of the element and include the offset which makes is appear earlier or later
                 var elemStart = (!objOptions.scrollHorizontal) ? Math.round( $obj.offset().top ) + objOptions.offset : Math.round( $obj.offset().left ) + objOptions.offset,
                     elemEnd = (!objOptions.scrollHorizontal) ? elemStart + $obj.height() : elemStart + $obj.width();
@@ -119,7 +117,7 @@
 
         // On resize change the height var
         $(window).resize(function(e){
-            windowSize = {height: $(window).height(), width: $(window).width()},
+            windowSize = {height: $(window).height(), width: $(window).width()};
             $elem.checkElements();
         });
 
