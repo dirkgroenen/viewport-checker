@@ -1,7 +1,7 @@
 jQuery-viewport-checker
 =======================
 
-Little script that detects if an element is in the viewport and adds a class to it.
+Little script that detects if an element is in the viewport and adds a class to it. 
 
 [![Help me with a cup of coffee ](https://pledgie.com/campaigns/28130.png?skin_name=chrome)](https://pledgie.com/campaigns/28130)
 
@@ -11,7 +11,7 @@ Just include the script and jQuery in your website <head> tag and call it on the
 ```code
 <head>
     <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="viewportchecker.js"></script>
+    <script src="dist/jquery.viewportchecker.min.js"></script>
 
     <script>
         $(document).ready(function(){
@@ -42,7 +42,7 @@ Available attributes are:
 ```code
 <div data-vp-add-class="random"></div>          >   classToAdd
 <div data-vp-remove-class="random"></div>       >	classToRemove
-<div data-vp-offset="[100 OR 10%]"></div>                >	offset
+<div data-vp-offset="[100 OR 10%]"></div>       >	offset
 <div data-vp-repeat="true"></div>               >	repeat
 <div data-vp-scrollHorizontal="false"></div>    >	scrollHorizontal
 ```
