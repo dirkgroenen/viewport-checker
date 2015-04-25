@@ -1,5 +1,5 @@
 /*
-    Version 1.7.4
+    Version 1.8.0
     The MIT License (MIT)
 
     Copyright (c) 2014 Dirk Groenen
@@ -78,6 +78,12 @@
                 if ($obj.hasClass(objOptions.classToAdd) && !objOptions.repeat){
                     return;
                 }
+
+                // Check if the offset is percentage based
+                if(String(objOptions.offset).indexOf("%") > 0)
+                    objOptions.offset = (parseInt(objOptions.offset) / 100) * windowSize.height;
+
+                console.log(objOptions.offset);
 
                 // define the top position of the element and include the offset which makes is appear earlier or later
                 var elemStart = (!objOptions.scrollHorizontal) ? Math.round( $obj.offset().top ) + objOptions.offset : Math.round( $obj.offset().left ) + objOptions.offset,
