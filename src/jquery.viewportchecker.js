@@ -1,5 +1,5 @@
 /*
-    Version 1.8.0
+    Version 1.8.2
     The MIT License (MIT)
 
     Copyright (c) 2014 Dirk Groenen
@@ -32,7 +32,7 @@
         // Cache the given element and height of the browser
         var $elem = this,
             windowSize = {height: $(window).height(), width: $(window).width()},
-            scrollElem = ((navigator.userAgent.toLowerCase().indexOf('webkit') != -1) ? 'body' : 'html');
+            scrollElem = ((navigator.userAgent.toLowerCase().indexOf('webkit') != -1 || navigator.userAgent.toLowerCase().indexOf('windows phone') != -1) ? 'body' : 'html');
 
         /*
          * Main method that checks the elements and adds or removes the class(es)
@@ -112,9 +112,18 @@
 
         };
 
-        // Run checkelements on load and scroll
-        $(document).bind("touchmove MSPointerMove pointermove", this.checkElements);
-        $(window).bind("load scroll touchmove", this.checkElements);
+        // Select the correct events
+        if( !!('ontouchstart' in window) ){
+            // Touchscreen
+            $(document).bind("touchmove MSPointerMove pointermove", this.checkElements);
+        }
+        else{
+            // No touchscreen
+            $(window).bind("scroll", this.checkElements);
+        }
+
+        // Always load on window load
+        $(window).bind("load", this.checkElements);
 
         // On resize change the height var
         $(window).resize(function(e){
