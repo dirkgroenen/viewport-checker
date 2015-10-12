@@ -1,5 +1,4 @@
 /*
-    Version 1.8.2
     The MIT License (MIT)
 
     Copyright (c) 2014 Dirk Groenen
@@ -112,18 +111,24 @@
 
         };
 
+        /**
+         * Binding the correct event listener is still a tricky thing.
+         * People have expierenced sloppy scrolling when both scroll and touch
+         * events are added, but to make sure devices with both scroll and touch
+         * are handles too we always have to add the window.scroll event
+         *
+         * @see  https://github.com/dirkgroenen/jQuery-viewport-checker/issues/25
+         * @see  https://github.com/dirkgroenen/jQuery-viewport-checker/issues/27
+         */
+
         // Select the correct events
-        if( !!('ontouchstart' in window) ){
-            // Touchscreen
+        if( 'ontouchstart' in window || 'onmsgesturechange' in window ){
+            // Device with touchscreen
             $(document).bind("touchmove MSPointerMove pointermove", this.checkElements);
-        }
-        else{
-            // No touchscreen
-            $(window).bind("scroll", this.checkElements);
         }
 
         // Always load on window load
-        $(window).bind("load", this.checkElements);
+        $(window).bind("load scroll", this.checkElements);
 
         // On resize change the height var
         $(window).resize(function(e){
