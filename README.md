@@ -40,6 +40,7 @@ $('.dummy').viewportChecker({
     repeat: false, // Add the possibility to remove the class if the elements are not visible
     callbackFunction: function(elem, action){}, // Callback to do after a class was added to an element. Action will return "add" or "remove", depending if the class was added or removed
 	scrollHorizontal: false // Set to true if your website scrolls horizontal instead of vertical.
+    scrollBox: window // Set the parent element should be checked against. 
 });
 ```
 

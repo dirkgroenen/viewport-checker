@@ -24,13 +24,14 @@
             repeat: false,
             invertBottomOffset: true,
             callbackFunction: function(elem, action){},
-            scrollHorizontal: false
+            scrollHorizontal: false,
+            scrollBox: window
         };
         $.extend(options, useroptions);
 
         // Cache the given element and height of the browser
         var $elem = this,
-            windowSize = {height: $(window).height(), width: $(window).width()},
+            boxSize = {height: $(options.scrollBox).height(), width: $(options.scrollBox).width()},
             scrollElem = ((navigator.userAgent.toLowerCase().indexOf('webkit') != -1 || navigator.userAgent.toLowerCase().indexOf('windows phone') != -1) ? 'body' : 'html');
 
         /*
@@ -42,11 +43,11 @@
             // Set some vars to check with
             if(!options.scrollHorizontal){
                 viewportStart = $(scrollElem).scrollTop();
-                viewportEnd = (viewportStart + windowSize.height);
+                viewportEnd = (viewportStart + boxSize.height);
             }
             else{
                 viewportStart = $(scrollElem).scrollLeft();
-                viewportEnd = (viewportStart + windowSize.width);
+                viewportEnd = (viewportStart + boxSize.width);
             }
 
             // Loop through all given dom elements
@@ -80,7 +81,7 @@
 
                 // Check if the offset is percentage based
                 if(String(objOptions.offset).indexOf("%") > 0)
-                    objOptions.offset = (parseInt(objOptions.offset) / 100) * windowSize.height;
+                    objOptions.offset = (parseInt(objOptions.offset) / 100) * boxSize.height;
 
                 // define the top position of the element and include the offset which makes is appear earlier or later
                 var elemStart = (!objOptions.scrollHorizontal) ? Math.round( $obj.offset().top ) + objOptions.offset : Math.round( $obj.offset().left ) + objOptions.offset,
@@ -128,11 +129,11 @@
         }
 
         // Always load on window load
-        $(window).bind("load scroll", this.checkElements);
+        $(options.scrollBox).bind("load scroll", this.checkElements);
 
         // On resize change the height var
         $(window).resize(function(e){
-            windowSize = {height: $(window).height(), width: $(window).width()};
+            boxSize = {height: $(options.scrollBox).height(), width: $(options.scrollBox).width()};
             $elem.checkElements();
         });
 
