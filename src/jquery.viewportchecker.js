@@ -20,6 +20,7 @@
         var options = {
             classToAdd: 'visible',
             classToRemove : 'invisible',
+            classToAddForFullView : 'full-visible',
             offset: 100,
             repeat: false,
             invertBottomOffset: true,
@@ -61,6 +62,8 @@
                     attrOptions.classToAdd = $obj.data('vp-add-class');
                 if ($obj.data('vp-remove-class'))
                     attrOptions.classToRemove = $obj.data('vp-remove-class');
+                if ($obj.data('vp-add-class-full-view'))
+                    attrOptions.classToAddForFullView = $obj.data('vp-add-class-full-view');
                 if ($obj.data('vp-offset'))
                     attrOptions.offset = $obj.data('vp-offset');
                 if ($obj.data('vp-repeat'))
@@ -83,8 +86,12 @@
                 if(String(objOptions.offset).indexOf("%") > 0)
                     objOptions.offset = (parseInt(objOptions.offset) / 100) * boxSize.height;
 
-                // define the top position of the element and include the offset which makes is appear earlier or later
-                var elemStart = (!objOptions.scrollHorizontal) ? Math.round( $obj.offset().top ) + objOptions.offset : Math.round( $obj.offset().left ) + objOptions.offset,
+                // Get the raw start and end positions
+                var rawStart = (!objOptions.scrollHorizontal) ? $obj.offset().top : $obj.offset().left,
+                    rawEnd = (!objOptions.scrollHorizontal) ? rawStart + $obj.height() : rawStart + $obj.width();
+
+                // Add the defined offset
+                var elemStart = Math.round( rawStart ) + objOptions.offset,
                     elemEnd = (!objOptions.scrollHorizontal) ? elemStart + $obj.height() : elemStart + $obj.width();
 
                 if(objOptions.invertBottomOffset)
@@ -93,17 +100,22 @@
                 // Add class if in viewport
                 if ((elemStart < viewportEnd) && (elemEnd > viewportStart)){
 
-                    // remove class
+                    // Remove class
                     $obj.removeClass(objOptions.classToRemove);
-
                     $obj.addClass(objOptions.classToAdd);
 
                     // Do the callback function. Callback wil send the jQuery object as parameter
                     objOptions.callbackFunction($obj, "add");
 
+                    // Check if full element is in view
+                    if(rawEnd <= viewportEnd && rawStart >= viewportStart)
+                        $obj.addClass(objOptions.classToAddForFullView);
+                    else
+                        $obj.removeClass(objOptions.classToAddForFullView);
+
                 // Remove class if not in viewport and repeat is true
                 } else if ($obj.hasClass(objOptions.classToAdd) && (objOptions.repeat)){
-                    $obj.removeClass(objOptions.classToAdd);
+                    $obj.removeClass(objOptions.classToAdd + " " + objOptions.classToAddForFullView);
 
                     // Do the callback function.
                     objOptions.callbackFunction($obj, "remove");
