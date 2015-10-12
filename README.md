@@ -7,7 +7,14 @@ Little script that detects if an element is in the viewport and adds a class to 
 
 Installation
 ------------
-Just include the script and jQuery in your website <head> tag and call it on the elements you want to check.
+
+Download the file located in `/dist` or use bower to install it. 
+
+```
+bower install jQuery-viewport-checker
+```
+
+Include the script and jQuery in your website <head> tag and call it on the elements you want to check.
 ```code
 <head>
     <script src="http://code.jquery.com/jquery.js"></script>
