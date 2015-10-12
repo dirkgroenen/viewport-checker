@@ -21,6 +21,7 @@
             classToAdd: 'visible',
             classToRemove : 'invisible',
             classToAddForFullView : 'full-visible',
+            removeClassAfterAnimation: false,
             offset: 100,
             repeat: false,
             invertBottomOffset: true,
@@ -42,7 +43,7 @@
             var viewportStart, viewportEnd;
 
             // Set some vars to check with
-            if(!options.scrollHorizontal){
+            if (!options.scrollHorizontal){
                 viewportStart = $(scrollElem).scrollTop();
                 viewportEnd = (viewportStart + boxSize.height);
             }
@@ -64,6 +65,8 @@
                     attrOptions.classToRemove = $obj.data('vp-remove-class');
                 if ($obj.data('vp-add-class-full-view'))
                     attrOptions.classToAddForFullView = $obj.data('vp-add-class-full-view');
+                if ($obj.data('vp-keep-add-class'))
+                    attrOptions.removeClassAfterAnimation = $obj.data('vp-remove-after-animation');
                 if ($obj.data('vp-offset'))
                     attrOptions.offset = $obj.data('vp-offset');
                 if ($obj.data('vp-repeat'))
@@ -78,12 +81,12 @@
                 $.extend(objOptions, attrOptions);
 
                 // If class already exists; quit
-                if ($obj.hasClass(objOptions.classToAdd) && !objOptions.repeat){
+                if ($obj.data('vp-animated') && !objOptions.repeat){
                     return;
                 }
 
                 // Check if the offset is percentage based
-                if(String(objOptions.offset).indexOf("%") > 0)
+                if (String(objOptions.offset).indexOf("%") > 0)
                     objOptions.offset = (parseInt(objOptions.offset) / 100) * boxSize.height;
 
                 // Get the raw start and end positions
@@ -94,8 +97,8 @@
                 var elemStart = Math.round( rawStart ) + objOptions.offset,
                     elemEnd = (!objOptions.scrollHorizontal) ? elemStart + $obj.height() : elemStart + $obj.width();
 
-                if(objOptions.invertBottomOffset)
-                	elemEnd -= (objOptions.offset * 2);
+                if (objOptions.invertBottomOffset)
+                    elemEnd -= (objOptions.offset * 2);
 
                 // Add class if in viewport
                 if ((elemStart < viewportEnd) && (elemEnd > viewportStart)){
@@ -108,10 +111,19 @@
                     objOptions.callbackFunction($obj, "add");
 
                     // Check if full element is in view
-                    if(rawEnd <= viewportEnd && rawStart >= viewportStart)
+                    if (rawEnd <= viewportEnd && rawStart >= viewportStart)
                         $obj.addClass(objOptions.classToAddForFullView);
                     else
                         $obj.removeClass(objOptions.classToAddForFullView);
+
+                    // Set element as already animated
+                    $obj.data('vp-animated', true);
+
+                    if (!objOptions.removeClassAfterAnimation) {
+                        $obj.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+                            $obj.removeClass(objOptions.classToAdd);
+                        });
+                    }
 
                 // Remove class if not in viewport and repeat is true
                 } else if ($obj.hasClass(objOptions.classToAdd) && (objOptions.repeat)){
@@ -119,6 +131,9 @@
 
                     // Do the callback function.
                     objOptions.callbackFunction($obj, "remove");
+
+                    // Remove already-animated-flag
+                    $obj.data('vp-animated', false);
                 }
             });
 
