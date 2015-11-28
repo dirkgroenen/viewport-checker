@@ -119,7 +119,7 @@
                     // Set element as already animated
                     $obj.data('vp-animated', true);
 
-                    if (!objOptions.removeClassAfterAnimation) {
+                    if (objOptions.removeClassAfterAnimation) {
                         $obj.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
                             $obj.removeClass(objOptions.classToAdd);
                         });
