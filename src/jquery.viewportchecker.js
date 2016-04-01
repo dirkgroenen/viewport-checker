@@ -37,6 +37,24 @@
             scrollElem = ((navigator.userAgent.toLowerCase().indexOf('webkit') != -1 || navigator.userAgent.toLowerCase().indexOf('windows phone') != -1) ? 'body' : 'html');
 
         /*
+         * Method that loads the original rects of elements
+         */
+        this.loadElements = function() {
+          $elem.each(function() {
+            var $obj = $(this);
+
+            if (!$obj.data('vp-orig-top'))
+              $obj.data('vp-orig-top', $obj.offset().top);
+            if (!$obj.data('vp-orig-left'))
+              $obj.data('vp-orig-left', $obj.offset().left);
+            if (!$obj.data('vp-orig-width'))
+              $obj.data('vp-orig-width', $obj.width());
+            if (!$obj.data('vp-orig-height'))
+              $obj.data('vp-orig-height', $obj.height());
+          });
+        };
+
+        /*
          * Main method that checks the elements and adds or removes the class(es)
          */
         this.checkElements = function(){
@@ -57,6 +75,13 @@
                 var $obj = $(this),
                     objOptions = {},
                     attrOptions = {};
+
+                var originalRect = {
+                  top: $obj.data('vp-orig-top'),
+                  left: $obj.data('vp-orig-left'),
+                  width: $obj.data('vp-orig-width'),
+                  height: $obj.data('vp-orig-height')
+                };
 
                 //  Get any individual attribution data
                 if ($obj.data('vp-add-class'))
@@ -90,8 +115,8 @@
                     objOptions.offset = (parseInt(objOptions.offset) / 100) * boxSize.height;
 
                 // Get the raw start and end positions
-                var rawStart = (!objOptions.scrollHorizontal) ? $obj.offset().top : $obj.offset().left,
-                    rawEnd = (!objOptions.scrollHorizontal) ? rawStart + $obj.height() : rawStart + $obj.width();
+                var rawStart = (!objOptions.scrollHorizontal) ? originalRect.top : originalRect.left,
+                    rawEnd = (!objOptions.scrollHorizontal) ? rawStart + originalRect.height : rawStart + originalRect.width;
 
                 // Add the defined offset
                 var elemStart = Math.round( rawStart ) + objOptions.offset,
@@ -155,8 +180,12 @@
             $(document).bind("touchmove MSPointerMove pointermove", this.checkElements);
         }
 
-        // Always load on window load
-        $(options.scrollBox).bind("load scroll", this.checkElements);
+        $(options.scrollBox).bind("scroll", this.checkElements);
+
+        $(options.scrollBox).bind("load", function() {
+          $elem.loadElements();
+          $elem.checkElements();
+        });
 
         // On resize change the height var
         $(window).resize(function(e){
