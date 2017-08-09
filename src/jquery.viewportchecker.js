@@ -24,6 +24,7 @@
             removeClassAfterAnimation: false,
             offset: 100,
             repeat: false,
+            viewportSizeOffset: 0,
             invertBottomOffset: true,
             callbackFunction: function(elem, action){},
             scrollHorizontal: false,
@@ -59,11 +60,11 @@
             // Set some vars to check with
             if (!options.scrollHorizontal){
                 viewportStart = $(scrollElem).scrollTop();
-                viewportEnd = (viewportStart + boxSize.height);
+                viewportEnd = (viewportStart + boxSize.height + options.viewportSizeOffset);
             }
             else{
                 viewportStart = $(scrollElem).scrollLeft();
-                viewportEnd = (viewportStart + boxSize.width);
+                viewportEnd = (viewportStart + boxSize.width + options.viewportSizeOffset);
             }
 
             // Loop through all given dom elements
