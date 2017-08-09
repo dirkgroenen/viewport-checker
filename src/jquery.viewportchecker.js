@@ -43,14 +43,10 @@
           $elem.each(function() {
             var $obj = $(this);
 
-            if (!$obj.data('vp-orig-top'))
-              $obj.data('vp-orig-top', $obj.offset().top);
-            if (!$obj.data('vp-orig-left'))
-              $obj.data('vp-orig-left', $obj.offset().left);
-            if (!$obj.data('vp-orig-width'))
-              $obj.data('vp-orig-width', $obj.width());
-            if (!$obj.data('vp-orig-height'))
-              $obj.data('vp-orig-height', $obj.height());
+            $obj.data('vp-orig-top', $obj.offset().top);
+            $obj.data('vp-orig-left', $obj.offset().left);
+            $obj.data('vp-orig-width', $obj.width());
+            $obj.data('vp-orig-height', $obj.height());
           });
         };
 
