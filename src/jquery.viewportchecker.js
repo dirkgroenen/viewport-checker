@@ -186,6 +186,7 @@
         // On resize change the height var
         $(window).resize(function(e){
             boxSize = {height: $(options.scrollBox).height(), width: $(options.scrollBox).width()};
+            $elem.loadElements();
             $elem.checkElements();
         });
 
