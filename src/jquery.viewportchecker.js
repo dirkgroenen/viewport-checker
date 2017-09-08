@@ -33,8 +33,7 @@
 
         // Cache the given element and height of the browser
         var $elem = this,
-            boxSize = {height: $(options.scrollBox).height(), width: $(options.scrollBox).width()},
-            scrollElem = ((navigator.userAgent.toLowerCase().indexOf('webkit') != -1 || navigator.userAgent.toLowerCase().indexOf('windows phone') != -1) ? 'body' : 'html');
+            boxSize = {height: $(options.scrollBox).height(), width: $(options.scrollBox).width()};
 
         /*
          * Main method that checks the elements and adds or removes the class(es)
@@ -44,11 +43,19 @@
 
             // Set some vars to check with
             if (!options.scrollHorizontal){
-                viewportStart = $(scrollElem).scrollTop();
+                viewportStart = Math.max(
+                    $('html').scrollTop(),
+                    $('body').scrollTop(),
+                    $(window).scrollTop()
+                );
                 viewportEnd = (viewportStart + boxSize.height);
             }
             else{
-                viewportStart = $(scrollElem).scrollLeft();
+                viewportStart = Math.max(
+                    $('html').scrollLeft(),
+                    $('body').scrollLeft(),
+                    $(window).scrollLeft()
+                );
                 viewportEnd = (viewportStart + boxSize.width);
             }
 
