@@ -87,8 +87,10 @@
                 $.extend(objOptions, options);
                 $.extend(objOptions, attrOptions);
 
-                // If class already exists; quit
-                if ($obj.data('vp-animated') && !objOptions.repeat){
+                // If class already exists or obj is not visible ; quit
+                if (($obj.data('vp-animated') && !objOptions.repeat)
+                    || !$obj.is(':visible')
+                ) {
                     return;
                 }
 
