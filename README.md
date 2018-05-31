@@ -3,14 +3,12 @@ jQuery-viewport-checker
 
 ![](https://img.shields.io/bower/v/jQuery-viewport-checker.svg)
 
-Little script that detects if an element is in the viewport and adds a class to it. 
-
-[![Help me with a cup of coffee ](https://pledgie.com/campaigns/28130.png?skin_name=chrome)](https://pledgie.com/campaigns/28130)
+Simple script that adds classes to elements which appear in the user's viewport.
 
 Installation
 ------------
 
-Download the file located in `/dist` or use bower to install it. 
+Download the file located in `/dist` or use bower to install it.
 
 ```
 bower install jQuery-viewport-checker
@@ -47,7 +45,7 @@ $('.dummy').viewportChecker({
 });
 ```
 
-Besides the global options you can also add data-attributes to each individual element. These attributes will override the global options. 
+Besides the global options you can also add data-attributes to each individual element. These attributes will override the global options.
 
 Available attributes are:
 ```html
