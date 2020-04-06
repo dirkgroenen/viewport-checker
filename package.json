@@ -6,7 +6,7 @@
   "files": [
     "dist"
   ],
-  "version": "0.0.0-development",
+  "version": "2.0.0",
   "homepage": "https://github.com/dirkgroenen/viewport-checker",
   "description": "Little script that detects if an element is in the viewport and adds a class to it.",
   "repository": "https://github.com/dirkgroenen/viewport-checker",
@@ -24,8 +24,6 @@
   },
   "scripts": {
     "clean": "rm -r ./dist",
-    "build": "rollup -c rollup.config.ts",
-    "semantic-release": "semantic-release",
-    "semantic-release-prepare": "ts-node tools/semantic-release-prepare"
+    "build": "rollup -c rollup.config.ts"
   }
 }
