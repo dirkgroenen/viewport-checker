@@ -1,97 +1,101 @@
 <!-- Demo page -->
 <!DOCTYPE html>
 <html>
-    <head>
 
-        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="../src/jquery.viewportchecker.js"></script>
+<head>
+    <script src="../dist/viewportChecker.umd.js"></script>
 
-        <style>
-            body,html{
-                width: 100%;
-                height: 100%;
-                margin: 0;
-                font-family: 'Helvetica';
-                padding: 0;
-                position: relative;
-                overflow: hidden;
-            }
+    <style>
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            font-family: 'Helvetica';
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
 
-            .scrollwrapper{
-                overflow: auto;
-                width: 75%;
-                height: 75%;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                -webkit-transform: translate(-50%, -50%);
-                -moz-transform: translate(-50%, -50%);
-                -ms-transform: translate(-50%, -50%);
-                transform: translate(-50%, -50%);
-            }
+        .scrollwrapper {
+            overflow: auto;
+            width: 75%;
+            height: 75%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
 
-            .dummy{
-                width: 100%;
-                height: 300px;
-                font-size: 0px;
-                -webkit-transition: all .5s;
-                transition: all .5s;
-                -moz-transition: all .5s;
-                text-align: center;
-                opacity: .3;
-            }
+        .dummy {
+            width: 100%;
+            height: 300px;
+            font-size: 0px;
+            -webkit-transition: all .5s;
+            transition: all .5s;
+            -moz-transition: all .5s;
+            text-align: center;
+            opacity: .3;
+        }
 
-            .dummy.visible{
-                font-size: 50px;
-                color: white;
-                text-shadow: 0 0 3px black;
-                opacity: 1;
-            }
+        .dummy.visible {
+            font-size: 50px;
+            color: white;
+            text-shadow: 0 0 3px black;
+            opacity: 1;
+        }
 
-            .spacer{
-                position: relative;
-                width: 100%;
-                height: 100%;
-                background-color: #f2f2f2;
-            }
+        .spacer {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: #f2f2f2;
+        }
 
-            .spacer .text{
-                position: absolute;
-                font-size: 50px;
-                color: #232323;
-                text-align: center;
-                width: 100%;
-                top: 50%;
-                -webkit-transform: translateY(-50%);
-                -moz-transform: translateY(-50%);
-                transform: translateY(-50%);
-            }
+        .spacer .text {
+            position: absolute;
+            font-size: 50px;
+            color: #232323;
+            text-align: center;
+            width: 100%;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+    </style>
 
-        </style>
+    <script>
+        const vpc = new ViewportChecker('.dummy', {
+            callbackFunction: function (elem, action) {
+                setTimeout(function () {
+                    elem.innerHTML = ((action == "add") ? 'Callback with 500ms timeout: added class' : 'Callback with 500ms timeout: removed class');
+                }, 500);
+            },
+            scrollBox: ".scrollwrapper"
+        });
+        document.addEventListener('DOMContentLoaded', () => vpc.attach(), { once: true });
+    </script>
+</head>
 
-        <script>
-            $(document).ready(function(){
-                $('.dummy').viewportChecker({
-                    callbackFunction: function(elem, action){
-                        setTimeout(function(){
-                            elem.html((action == "add") ? 'Callback with 500ms timeout: added class' : 'Callback with 500ms timeout: removed class');
-                        },500);
-                    },
-                    scrollBox: ".scrollwrapper"
-                });
-            });
-        </script>
-    </head>
-
-    <body>
-        <div class="scrollwrapper">
-            <div class="spacer"><div class="text">Scroll down</div></div>
-            <div class="dummy" data-vp-add-class="visible random1" data-vp-repeat="true" data-vp-offset="50%" style="background-color: #2ecc71;">element 1 (repeat=true, offset=100)</div>
-            <div class="spacer"></div>
-            <div class="dummy" data-vp-add-class="visible random1" data-vp-repeat="false" data-vp-offset="100" style="background-color: #9b59b6;">element 2 (repeat=false, offset=100)</div>
-            <div class="spacer"></div>
-            <div class="dummy" data-vp-add-class="visible random1" data-vp-repeat="true" data-vp-offset="100" style="background-color: #3498db;">element 3 (repeat=true, offset=100)</div>
-            <div class="spacer"></div>
+<body>
+    <div class="scrollwrapper">
+        <div class="spacer">
+            <div class="text">Scroll down</div>
         </div>
-    </body>
+        <div class="dummy" data-vp-add-class="visible random1" data-vp-repeat="true" data-vp-offset="50%"
+            style="background-color: #2ecc71;">element 1 (repeat=true, offset=100)</div>
+        <div class="spacer"></div>
+        <div class="dummy" data-vp-add-class="visible random1" data-vp-repeat="false" data-vp-offset="100"
+            style="background-color: #9b59b6;">element 2 (repeat=false, offset=100)</div>
+        <div class="spacer"></div>
+        <div class="dummy" data-vp-add-class="visible random1" data-vp-repeat="true" data-vp-offset="100"
+            style="background-color: #3498db;">element 3 (repeat=true, offset=100)</div>
+        <div class="spacer"></div>
+    </div>
+</body>
+
 </html>

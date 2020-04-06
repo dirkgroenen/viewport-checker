@@ -1,18 +1,31 @@
 {
-  "name": "jQuery-viewport-checker",
+  "name": "viewport-checker",
   "author": "Dirk Groenen",
-  "version": "1.8.8",
-  "homepage": "https://github.com/dirkgroenen/jQuery-viewport-checker",
+  "main": "dist/viewportChecker.umd.js",
+  "module": "dist/viewportChecker.es5.js",
+  "files": [
+    "dist"
+  ],
+  "version": "0.0.0-development",
+  "homepage": "https://github.com/dirkgroenen/viewport-checker",
   "description": "Little script that detects if an element is in the viewport and adds a class to it.",
-  "repository": "https://github.com/dirkgroenen/jQuery-viewport-checker",
-  "licenses": {
-    "type": "MIT",
-    "url": "https://github.com/dirkgroenen/jQuery-viewport-checker/blob/master/LICENSE"
-  },
+  "repository": "https://github.com/dirkgroenen/viewport-checker",
+  "license": "MIT",
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-contrib-jshint": "^0.11.0",
-    "grunt-contrib-uglify": "^0.7.0",
-    "grunt-contrib-watch": "^0.6.1"
+    "@types/node": "^13.11.0",
+    "rollup": "^2.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-sourcemaps": "^0.5.0",
+    "rollup-plugin-terser": "^5.3.0",
+    "rollup-plugin-typescript2": "^0.27.0",
+    "semantic-release": "^17.0.4",
+    "typescript": "^3.8"
+  },
+  "scripts": {
+    "clean": "rm -r ./dist",
+    "build": "rollup -c rollup.config.ts",
+    "semantic-release": "semantic-release",
+    "semantic-release-prepare": "ts-node tools/semantic-release-prepare"
   }
 }
