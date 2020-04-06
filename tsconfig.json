@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "target": "es5",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "lib": [
+      "DOM",
+      "ES2015"
+    ],
+    "declaration": true,
+    "sourceMap": true,
+    "outDir": "./dist/lib",
+    "declarationDir": "./dist/types",
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  },
+  "include": [
+    "./src"
+  ]
+}
