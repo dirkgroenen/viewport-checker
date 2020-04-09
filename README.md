@@ -5,18 +5,25 @@ viewport-checker
 
 Little script that detects if an element is in the viewport and adds a class to it.
 
-> Starting V2.x.x this plugin no longer requires jQuery. Take a look at version 1.x.x if you're still looking for the jQuery version.
+> Starting V2.x.x this plugin no longer requires jQuery. Take a look at version [1.x.x](https://www.npmjs.com/package/jquery-viewport-checker) if you're still looking for the jQuery version.
 
 Installation
 ------------
 
-Install with npm:
+Distribution files are shipped with the npm package. Install the package and use it in your project:
 
 ```
 npm install --save viewport-checker
 ```
 
-Include the script in your website and invoke it with a querySelector string referring to the elements you would like to check.
+Or use unpkg.com to directly include the distribution files in your site:
+
+```html
+<script type="text/javascript" src="//unpkg.com/viewport-checker@^2"></script>
+```
+
+After including the script in your project you can construct a new instance by providing a querySelector. Make sure
+to call `attach()` after you're DOM is ready so your elements are actually checked.
 ```html
 <head>
     <script src="dist/viewportChecker.umd.js"></script>
