@@ -2,9 +2,21 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script type="text/javascript" src="https://unpkg.com/viewport-checker@^2/dist/viewportChecker.umd.js"></script>
 
-        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="https://rawgit.com/dirkgroenen/jQuery-viewport-checker/master/dist/jquery.viewportchecker.min.js"></script>
+        <script>
+            (function() {
+                const vpc = new ViewportChecker('.dummy', {
+                    callbackFunction: function(elem, action){
+                        setTimeout(function(){
+                            const clbElm = elem.querySelector(".callback");
+                            clbElm.innerHTML = ((action == "add") ? 'Callback with 500ms timeout: added class' : 'Callback with 500ms timeout: removed class');
+                        },500);
+                    }
+                });
+                document.addEventListener('DOMContentLoaded', () => vpc.attach());
+            })();
+        </script>
 
         <style>
             body,html{
@@ -53,18 +65,6 @@
             }
 
         </style>
-
-        <script>
-            $(document).ready(function(){
-                $('.dummy').viewportChecker({
-                    callbackFunction: function(elem, action){
-                        setTimeout(function(){
-                            elem.find(".callback").html((action == "add") ? 'Callback with 500ms timeout: added class' : 'Callback with 500ms timeout: removed class');
-                        },500);
-                    }
-                });
-            });
-        </script>
     </head>
 
     <body>
