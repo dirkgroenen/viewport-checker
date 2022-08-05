@@ -180,8 +180,14 @@ export default class ViewportChecker implements EventListenerObject {
             // options.
             for (const opt in attrOptionMap) {
                 const dataKey = attrOptionMap[opt as keyof typeof attrOptionMap];
-                const val = $obj.dataset[dataKey];
-                if (val) { (objOptions as any)[opt] = val; };
+
+                const val = ["true", "false"].includes($obj.dataset[dataKey] ?? "") ? 
+                                getBooleanStringRepresentation($obj.dataset[dataKey]!) :  
+                                $obj.dataset[dataKey];
+
+                if (val !== undefined) {
+                    (objOptions as any)[opt] = val; 
+                };
             }
 
             // If class already exists; quit
@@ -282,6 +288,12 @@ const unregisterGlobalInstance = (index: number): void => {
         window._VP_CHECKERS.splice(index, 1);
     }
 };
+
+/**
+ * (Helper Function)
+ * Turns strings 'true' or 'false' into booleans
+ */
+const getBooleanStringRepresentation = (val: string): boolean => val === "true" ? true : false;
 
 ((window: Window, document: Document) => {
     /**
